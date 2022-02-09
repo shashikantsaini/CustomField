@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="bluethink_add_custom_fields" type="Bluethink\CustomField\Plugin\Checkout\Model\Checkout\LayoutProcessor" sortOrder="100"/>
+    </type>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="save-in-quote" type="Bluethink\CustomField\Plugin\Quote\ShippingInformationManagementPlugin" sortOrder="10"/>
+    </type>
+    <type name="Magento\Quote\Model\BillingAddressManagement">
+        <plugin name="save-in-billingquote" type="Bluethink\CustomField\Plugin\Quote\BillingAddressManagement" sortOrder="20"/>
+    </type>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="deliverytime" xsi:type="string">sales_order.deliverytime</item>
+                <item name="delivery_date" xsi:type="string">sales_order.delivery_date</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
